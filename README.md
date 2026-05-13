@@ -1,57 +1,58 @@
-# WhatsApp Chat Analysis & Classification (Big Data with Spark)
+# 📱 WhatsApp Chat Analysis & ML with Spark
 
-This project is a powerful Big Data solution designed to process, analyze, and classify WhatsApp chat logs using **Apache Spark**. It leverages Spark DataFrames for large-scale data processing and Spark MLlib for machine learning classification.
+A high-performance Big Data project that parses, analyzes, and classifies WhatsApp chat logs using **Apache Spark**, featuring a premium **React Dashboard** and an interactive **Jupyter Notebook**.
 
-## 🚀 Features
-- **Scalable Data Processing**: Uses PySpark to handle massive amounts of chat data across multiple files.
-- **Automated Parsing**: Regex-based parsing of standard WhatsApp export formats.
-- **Deep Insights**:
-  - Message frequency per category.
-  - Peak activity hours analysis.
-  - Top contributor identification.
-- **Machine Learning**:
-  - **Algorithm**: Random Forest Classifier.
-  - **Feature Engineering**: TF-IDF (Term Frequency-Inverse Document Frequency).
-  - **Classification**: Automatically categorizes chats into labels like *Work*, *Friends*, *Studying*, etc.
+## 🌟 Overview
+This project transforms raw WhatsApp text exports into actionable insights. It uses Spark's distributed computing to handle large-scale chat data and Spark MLlib to categorize conversations into groups like **Work (Important)**, **Friends**, and **Studying**.
 
-## 🛠️ Requirements
-- Python 3.8+
-- [Apache Spark](https://spark.apache.org/downloads.html) (with Java 8/11/17)
-- PySpark (`pip install pyspark`)
+### Key Features
+- **Big Data Scale**: Powered by PySpark for high-speed processing.
+- **AI Classification**: Random Forest ML model for automated chat categorization.
+- **Premium Dashboard**: Beautiful React UI with glassmorphism and real-time charts.
+- **Interactive EDA**: Comprehensive Jupyter Notebook for step-by-step analysis.
+- **Urgency Tracking**: Keyword-based urgency detection for critical messages.
+
+## 🛠️ Tech Stack
+- **Backend**: Python, PySpark, Flask (API)
+- **Frontend**: React, Vite, Tailwind CSS, Recharts, Lucide Icons
+- **ML/DS**: Spark MLlib, TF-IDF, Jupyter Notebooks
 
 ## 📂 Project Structure
 ```text
-├── dataset/               # Organized chat files (.txt)
-│   ├── work/              # Professional/Important chats
-│   ├── friends/           # Personal/Semi-important chats
-│   └── studying/          # Academic chats
-├── spark_processor.py      # Main PySpark processing & ML script
-├── check_spark.py         # Environment verification script
-└── README.md              # Project documentation
+├── dataset/               # Your categorized chat files (.txt)
+├── backend/               # Flask API serving Spark results
+├── frontend/              # Modern React Dashboard
+├── whatsapp_analysis.ipynb # Interactive Jupyter Notebook
+├── spark_processor.py      # Core Spark ML engine
+├── run_full_app.bat       # Master runner for the entire stack
+└── .gitignore             # Configured for clean git history
 ```
 
-## 📖 How to Use
+## 🚀 Getting Started
 
-### 1. Prepare Your Data
-Export your WhatsApp chats as `.txt` files (without media) and place them in the corresponding subfolders inside the `dataset/` directory.
+### 1. Requirements
+- Python 3.11+
+- Java (JDK 17 recommended for Spark)
+- Node.js (for React frontend)
 
-### 2. Verify Environment
-Run the check script to ensure Spark and Java are correctly configured:
-```bash
-python check_spark.py
-```
+### 2. Setup
+1. Clone the repository.
+2. Place your WhatsApp `.txt` files in `dataset/work`, `dataset/friends`, or `dataset/studying`.
+3. Run `npm install` inside the `frontend` folder.
 
-### 3. Run Analysis & Training
-Execute the main processor to see insights and train the model:
-```bash
-python spark_processor.py
-```
+### 3. Execution
+The easiest way to run the project on Windows is using the provided scripts:
 
-## 📊 Machine Learning Model
-The project uses a **Random Forest** algorithm with a pipeline consisting of Tokenization, StopWords removal, and TF-IDF vectorization. 
+- **Run Full Dashboard**: Double-click `run_full_app.bat`. This starts the Backend, Frontend, and opens your browser.
+- **Run Terminal Report**: Double-click `run_all.bat`.
+- **Run Notebook**: Open `whatsapp_analysis.ipynb` in VS Code or Jupyter Lab.
 
-- **Accuracy**: High precision achieved by learning vocabulary patterns specific to each chat category.
-- **Evaluation**: Evaluated using Accuracy and F1-Score metrics.
+## 📊 Machine Learning Pipeline
+The system uses a sophisticated NLP pipeline:
+1. **Tokenization**: Breaking messages into words.
+2. **Stopwords Removal**: Cleaning non-essential words.
+3. **TF-IDF Vectorization**: Converting text to numerical data.
+4. **Random Forest Classifier**: Training a model with 50 trees for robust classification.
 
 ## 📄 License
-This project is for educational purposes as part of a Big Data course.
+This project was developed as part of a Big Data and Machine Learning course.
