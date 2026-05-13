@@ -1,0 +1,18 @@
+12/05/2023, 09:15 - Alice (Manager): Hey team, we have an urgent deployment at 11 AM today. Please make sure all PRs are merged.
+12/05/2023, 09:17 - Bob: I'm on it! Reviewing the last PR now.
+12/05/2023, 09:30 - Charlie: Sounds good, I'll monitor the logs.
+12/05/2023, 10:00 - Mom: Don't forget to pick up groceries on your way home today! We need milk and eggs.
+12/05/2023, 10:05 - You: Will do! I'll be home around 6.
+12/05/2023, 11:30 - Unknown Number: Congratulations! You've been selected to receive a free $1000 Amazon gift card. Click here to claim: http://fake-scam-link.com
+12/05/2023, 12:15 - Netflix Promo: Last chance to upgrade your plan for 50% off! Offer expires today.
+12/05/2023, 13:00 - Dave (Best Friend): Bro are we still playing Call of Duty tonight?
+12/05/2023, 13:05 - You: Yeah man, I'll hop on at 8 PM.
+12/05/2023, 13:10 - Dave (Best Friend): <Media omitted>
+12/05/2023, 13:11 - Dave (Best Friend): Look at this crazy clip from yesterday's match 😂
+12/05/2023, 14:00 - Alice (Manager): The deployment was successful. Great job everyone!
+12/05/2023, 14:05 - Bob: Awesome.
+12/05/2023, 15:30 - Scam Caller: URGENT: Your bank account has been suspended due to suspicious activity. Call 1-800-FAKE-NUM immediately to restore access.
+12/05/2023, 16:45 - Dad: Have you seen the latest episode of that show we were watching?
+12/05/2023, 16:50 - You: Not yet, let's watch it this weekend!
+12/05/2023, 18:00 - Gym Buddy: Hitting legs today, you coming?
+12/05/2023, 18:05 - You: Sorry, I have to pick up groceries for my mom. Tomorrow for sure!

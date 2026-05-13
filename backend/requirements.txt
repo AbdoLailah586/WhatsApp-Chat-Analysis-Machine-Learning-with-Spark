@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlalchemy
+asyncpg
+alembic
+pandas
+scikit-learn
+joblib
+google-generativeai
+python-multipart
+python-dotenv
+pydantic
+pydantic-settings

@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Spark/Hadoop
+derby.log
+metastore_db/
+spark-warehouse/
+.spark-staged/
+
+# Node/React
+node_modules/
+dist/
+.eslintcache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dataset (Optional: Only if you don't want to share your private chats)
+# dataset/
