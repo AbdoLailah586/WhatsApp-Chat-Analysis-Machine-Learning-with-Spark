@@ -55,4 +55,4 @@ The system uses a sophisticated NLP pipeline:
 4. **Random Forest Classifier**: Training a model with 50 trees for robust classification.
 
 ## 📄 License
-This project was developed as part of a Big Data and Machine Learning course.
+This project was developed as part of a Big Data
