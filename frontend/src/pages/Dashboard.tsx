@@ -13,7 +13,7 @@ import { toast } from 'sonner'
 
 export default function Dashboard() {
   const { uploadId } = useParams<{ uploadId: string }>()
-  const id = parseInt(uploadId || "0", 10)
+  const id = uploadId || "0"
   const queryClient = useQueryClient()
   
   const { data, isLoading, isError } = useAnalytics(id)

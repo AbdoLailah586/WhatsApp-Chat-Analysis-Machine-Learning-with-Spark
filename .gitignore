@@ -20,5 +20,8 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Dataset (Optional: Only if you don't want to share your private chats)
-# dataset/
+# Project Specific
+uploads/
+spark_model/
+bin/
+TEST/

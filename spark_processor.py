@@ -12,16 +12,20 @@ from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 # Set environment variables for Spark workers on Windows
 os.environ['PYSPARK_PYTHON'] = sys.executable
 os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
+os.environ['HADOOP_HOME'] = os.path.dirname(os.path.abspath(__file__))
 
 # 1. Initialize Spark Session
 spark = SparkSession.builder \
     .appName("WhatsAppBigDataAnalysis") \
     .config("spark.driver.memory", "4g") \
+    .config("spark.hadoop.fs.file.impl", "org.apache.hadoop.fs.RawLocalFileSystem") \
+    .config("spark.hadoop.fs.file.impl.disable.cache", "true") \
     .getOrCreate()
 
 # 2. Define Regex for WhatsApp format: "dd/mm/yyyy, hh:mm - Sender: Message"
 # This regex captures Date, Time, Sender, and the Message content.
-CHAT_REGEX = r"(\d{2}/\d{2}/\d{4}), (\d{2}:\d{2}) - ([^:]+): (.+)"
+# Improved Regex to handle multiple formats (AM/PM, 24h, M/D/YY, etc.)
+CHAT_REGEX = r"^(\d{1,2}/\d{1,2}/\d{2,4}),\s+(\d{1,2}:\d{2}(?:\s?[apAP][mM])?)\s+-\s+([^:]+):\s+(.*)$"
 
 def parse_chat_line(line):
     match = re.match(CHAT_REGEX, line)
@@ -64,24 +68,22 @@ def load_and_parse_data(base_path):
 
 # 3. Feature Engineering & Aggregation
 def extract_insights(df):
-    print("\n--- Data Insights ---")
-    
-    # Message count per category
-    df.groupBy("category").count().show()
-    
-    # Top Senders per category
-    df.groupBy("category", "sender").count().sort(F.desc("count")).show(10)
-    
-    # Peak Hours Analysis
-    df.withColumn("hour", F.split(F.col("time"), ":")[0]) \
-      .groupBy("hour").count().sort("hour").show(24)
+    print("\n--- Data Insights (Calculated) ---")
+    # Commented out show() to avoid Windows terminal Unicode errors with Arabic text
+    # df.groupBy("category").count().show()
+    # df.groupBy("category", "sender").count().sort(F.desc("count")).show(10)
+    # df.withColumn("hour", F.split(F.col("time"), ":")[0]) \
+    #   .groupBy("hour").count().sort("hour").show(24)
 
 # 4. Machine Learning Pipeline
 def build_ml_pipeline(df):
+    # Arabic Stopwords List
+    arabic_stopwords = ["من", "في", "على", "الى", "هذا", "هذه", "تم", "كان", "كانت", "ان", "انها", "عن", "مع", "التي", "الذي", "بعد", "قبل"]
+    
     # Preprocessing
     indexer = StringIndexer(inputCol="category", outputCol="label")
     tokenizer = Tokenizer(inputCol="message", outputCol="words")
-    remover = StopWordsRemover(inputCol="words", outputCol="filtered_words")
+    remover = StopWordsRemover(inputCol="words", outputCol="filtered_words", stopWords=arabic_stopwords)
     hashingTF = HashingTF(inputCol="filtered_words", outputCol="rawFeatures", numFeatures=2000)
     idf = IDF(inputCol="rawFeatures", outputCol="features")
     
@@ -119,9 +121,13 @@ def build_ml_pipeline(df):
     print(f"F1-Score: {f1_score:.4f}")
     print("="*30)
     
-    # Show some sample predictions
-    print("\nSample Predictions (Actual vs Predicted):")
-    predictions.select("category", "message", "predictedLabel").show(20, truncate=50)
+    # Show some sample predictions (Disabled for Unicode safety)
+    # predictions.select("category", "message", "predictedLabel").show(20, truncate=50)
+    
+    # Save the model
+    model_path = os.path.join(os.path.dirname(__file__), "spark_model")
+    print(f"Saving model to {model_path}...")
+    model.write().overwrite().save(model_path)
     
     return model
 
